@@ -1,18 +1,7 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-
-        <q-toolbar-title>
-          Malefiz
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-
-    <q-page-container>
+  <q-layout view="hhh lpr lff">
+    <Header/>
+    <q-page-container class="no-padding no-margin">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -20,13 +9,13 @@
 
 <script>
 import { ref } from 'vue'
+import Header from './components/Header.vue';
 
 export default {
   name: 'LayoutDefault',
-
   components: {
+    Header
   },
-
   setup () {
     return {
       leftDrawerOpen: ref(false)
@@ -34,3 +23,4 @@ export default {
   }
 }
 </script>
+

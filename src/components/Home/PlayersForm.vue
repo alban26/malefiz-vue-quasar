@@ -1,38 +1,38 @@
 <template>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <q-card dark>
-        <div id="form">
-          <h2>Bitte Spieler eintragen!</h2>
-          <div class="input">
-            <div class="inputBox">
-              <label>Spieler 1</label>
-              <input id="player_1" v-model="player_1" class="input" type="text" name="player_1"/>
-            </div>
-            <div class="inputBox">
-              <label>Spieler 2</label>
-              <input id="player_2" v-model="player_2" class="input" type="text" name="player_2"/>
-            </div>
-            <div class="inputBox">
-              <label>Spieler 3</label>
-              <input id="player_3" v-model="player_3" class="input" type="text" name="player_3"/>
-            </div>
-            <div class="inputBox">
-              <label>Spieler 4</label>
-              <input id="player_4" v-model="player_4" class="input" type="text" name="player_4"/>
-            </div>
-            <div class="inputBox">
-              <router-link style="text-decoration: none; color: #E55A00" :to="{name:'Gameboard'}">
-                <input class="input text-center my-4" type="button"
-                       @click="postPlayers()" value="Spiel starten!"></router-link>
-            </div>
+  <div class="col-xs-12 col-sm-6 col-md-4">
+    <q-card dark>
+      <div id="form">
+        <h2>Bitte Spieler eintragen!</h2>
+        <div class="input">
+          <div class="inputBox">
+            <label>Spieler 1</label>
+            <input id="player_1" v-model="player_1" class="input" type="text" name="player_1"/>
+          </div>
+          <div class="inputBox">
+            <label>Spieler 2</label>
+            <input id="player_2" v-model="player_2" class="input" type="text" name="player_2"/>
+          </div>
+          <div class="inputBox">
+            <label>Spieler 3</label>
+            <input id="player_3" v-model="player_3" class="input" type="text" name="player_3"/>
+          </div>
+          <div class="inputBox">
+            <label>Spieler 4</label>
+            <input id="player_4" v-model="player_4" class="input" type="text" name="player_4"/>
+          </div>
+          <div class="inputBox">
+            <router-link style="text-decoration: none; color: #E55A00" :to="{ name:'Gameboard' }">
+              <input class="input text-center my-4" type="button" @click="postPlayers()" value="Spiel starten!">
+            </router-link>
           </div>
         </div>
-      </q-card>
-    </div>
+      </div>
+    </q-card>
+  </div>
 </template>
 
 <script>
-import { WebSocketMixin } from '../../mixins/webSocketMixin';
+import {WebSocketMixin} from '../../mixins/webSocketMixin';
 
 export default {
   data() {
@@ -54,7 +54,6 @@ export default {
         player_4: this.player_4,
       };
       this.sendMessage(formData);
-      this.updateStatement();
     },
   },
 };
@@ -62,7 +61,7 @@ export default {
 
 <style>
 #form {
-  padding: 5vh 2vw;
+  padding: 7rem 2vw;
 }
 
 h2 {

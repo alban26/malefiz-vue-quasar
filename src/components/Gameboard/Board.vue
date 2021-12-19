@@ -358,7 +358,7 @@ canvas {
   background: url('../../assets/images/malefiz-end.png') no-repeat;
   background-size: 100% 100%;
   margin: auto;
-  aspect-ratio: 4/4;
+  aspect-ratio: 1/1;
 }
 
 

@@ -46,6 +46,7 @@ export default {
       this.rollDiceWithoutValues();
       this.sendMessage({ data: '200' });
     },
+
   },
   computed: {
     updateStatement() {

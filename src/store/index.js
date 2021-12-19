@@ -4,6 +4,7 @@ const store = new Vuex.Store({
   state: {
     controller: {},
     websocket: Object,
+    serverConnection: Boolean,
   },
   getters: {
     GET_CONTROLLER(state) {
@@ -12,6 +13,9 @@ const store = new Vuex.Store({
     GET_WEBSOCKET(state) {
       return state.websocket;
     },
+    GET_SERVERCONNECTION(state) {
+      return state.serverConnection;
+    }
   },
   mutations: {
     SET_CONTROLLER(state, newController) {
@@ -22,6 +26,9 @@ const store = new Vuex.Store({
     SET_WEBSOCKET(state, newWebsocket) {
       state.websocket = newWebsocket;
     },
+    SET_SERVERCONNECTION(state, newServerConnection) {
+      state.serverConnection = newServerConnection;
+    }
   },
   actions: {
     SET_CONTROLLER_ASYNC(context, newController) {
@@ -41,6 +48,7 @@ store.commit('SET_WEBSOCKET', websocket);
 websocket.onopen = (event) => {
   console.log(event);
   console.log('Successfully connected to WebSocket');
+  store.commit('SET_SERVERCONNECTION', true);
   websocket.send('connect');
   store.commit('SET_CONTROLLER', event);
 };
@@ -50,6 +58,7 @@ websocket.onclose = () => {
 };
 
 websocket.onerror = (error) => {
+  store.commit('SET_SERVERCONNECTION', false);
   console.log(error);
 };
 

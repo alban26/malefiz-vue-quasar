@@ -24,6 +24,14 @@ import store from "./store";
       console.log('New content is available; please refresh.')
     },
     offline () {
+      Notification.requestPermission(function () {
+        const options = {
+          body: "Du bist offline. Spielen geht erst wieder wenn du online bist.",
+          icon: "./img/malefiz-1.53933058.png",
+          image: "./img/malefiz-1.53933058.png"
+        };
+        new Notification('Hallo', options);
+      })
       store.commit('SET_SERVERCONNECTION', false);
       console.log('No internet connection found. App is running in offline mode.')
     },
@@ -32,5 +40,7 @@ import store from "./store";
     }
 
   })
+
+
 
 // }

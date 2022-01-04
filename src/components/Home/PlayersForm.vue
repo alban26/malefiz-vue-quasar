@@ -2,28 +2,75 @@
   <div class="col-xs-12 col-sm-6 col-md-4">
     <q-card dark>
       <div id="form">
-        <h2>Bitte Spieler eintragen!</h2>
+        <h4>Bitte Spielername eintragen!</h4>
         <div class="input">
           <div class="inputBox">
-            <label>Spieler 1</label>
-            <input id="player_1" v-model="player_1" class="input" type="text" name="player_1"/>
+            <label>Spielername</label>
+            <input id="player_1" v-model="player_name" class="input" type="text" name="player_1"/>
           </div>
           <div class="inputBox">
-            <label>Spieler 2</label>
-            <input id="player_2" v-model="player_2" class="input" type="text" name="player_2"/>
+            <input class="input text-center my-4" type="button" @click="postPlayers()" value="Spieler hinzufügen!">
           </div>
+          <q-list bordered class="rounded-borders">
+            <q-item-label header>Spieler</q-item-label>
+
+            <q-item v-if="currentPlayers[0]" clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+
+                  <img src="../../assets/images/malefiz-1.png">
+                </q-avatar>
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label lines="1">{{ currentPlayers[0] }}</q-item-label>
+              </q-item-section>
+
+            </q-item>
+
+            <q-separator inset="item" />
+
+            <q-item v-if="currentPlayers[1]" clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="../../assets/images/malefiz-2.png">
+                </q-avatar>
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label lines="1">{{ currentPlayers[1] }}</q-item-label>
+              </q-item-section>
+
+            </q-item>
+            <q-item v-if="currentPlayers[2]" clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="../../assets/images/malefiz-3.png">
+                </q-avatar>
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label lines="1">{{ currentPlayers[2] }}</q-item-label>
+              </q-item-section>
+
+            </q-item>
+            <q-item v-if="currentPlayers[3]" clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="../../assets/images/malefiz-4.png">
+                </q-avatar>
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label lines="1">{{ currentPlayers[3] }}</q-item-label>
+              </q-item-section>
+
+            </q-item>
+          </q-list>
           <div class="inputBox">
-            <label>Spieler 3</label>
-            <input id="player_3" v-model="player_3" class="input" type="text" name="player_3"/>
-          </div>
-          <div class="inputBox">
-            <label>Spieler 4</label>
-            <input id="player_4" v-model="player_4" class="input" type="text" name="player_4"/>
-          </div>
-          <div class="inputBox">
-            <router-link style="text-decoration: none; color: #E55A00" :to="{ name:'Gameboard' }">
-              <input class="input text-center my-4" type="button" @click="postPlayers()" value="Spiel starten!">
-            </router-link>
+          <router-link v-if="currentPlayers.length > 1" style="text-decoration: none; color: #E55A00" :to="{ name:'Gameboard' }">
+            <input class="input text-center my-4" type="button" @click="startGame()" value="Spiel starten!">
+          </router-link>
           </div>
         </div>
       </div>
@@ -37,10 +84,7 @@ import {WebSocketMixin} from '../../mixins/webSocketMixin';
 export default {
   data() {
     return {
-      player_1: '',
-      player_2: '',
-      player_3: '',
-      player_4: '',
+      player_name: '',
     };
   },
   mixins: [WebSocketMixin],
@@ -48,14 +92,23 @@ export default {
   methods: {
     postPlayers() {
       const formData = {
-        player_1: this.player_1,
-        player_2: this.player_2,
-        player_3: this.player_3,
-        player_4: this.player_4,
+        player_name: this.player_name,
       };
       this.sendMessage(formData);
+      this.player_name = ''
     },
+    startGame() {
+      const startGame = {
+        start: 'start',
+      };
+      this.sendMessage(startGame)
+    }
   },
+  computed: {
+    currentPlayers() {
+      return this.GET_CONTROLLER.currentPlayers
+    },
+  }
 };
 </script>
 
@@ -64,7 +117,7 @@ export default {
   padding: 7rem 2vw;
 }
 
-h2 {
+h4 {
   color: #c7c7c7;
   align-content: center;
 }

@@ -1,21 +1,18 @@
 <template>
   <div style="background: #3A3A3C">
-    <ParallaxBanner/>
-    <Body/>
+    <LoginComponent/>
   </div>
 </template>
 
 <script>
-import ParallaxBanner from '../components/Home/ParallaxBanner.vue';
-import Body from '../components/Home/Body.vue';
+import LoginComponent from '../components/Auth/LoginComponent.vue';
 import {WebSocketMixin} from "../mixins/webSocketMixin";
 
 export default {
-  name: 'Home',
+  name: 'Login',
   mixins: [WebSocketMixin],
   components: {
-    ParallaxBanner,
-    Body,
+    LoginComponent,
   },
 };
 </script>

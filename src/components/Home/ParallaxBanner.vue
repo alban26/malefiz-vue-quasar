@@ -7,8 +7,10 @@
 </template>
 
 <script>
+import {WebSocketMixin} from "../../mixins/webSocketMixin";
 export default {
   name: 'Home',
+  mixins: [WebSocketMixin],
 };
 </script>
 
@@ -46,4 +48,5 @@ export default {
   background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
   padding: 20px 20px;
 }
+
 </style>

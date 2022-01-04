@@ -1,4 +1,7 @@
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/malefiz-vue-quasar/'
+        : '/',
     pluginOptions: {
         quasar: {
             importStrategy: 'kebab',

@@ -5,6 +5,7 @@ const store = new Vuex.Store({
     controller: {},
     websocket: Object,
     serverConnection: Boolean,
+    signedIn: false,
   },
   getters: {
     GET_CONTROLLER(state) {
@@ -15,6 +16,9 @@ const store = new Vuex.Store({
     },
     GET_SERVERCONNECTION(state) {
       return state.serverConnection;
+    },
+    GET_SIGNEDIN(state) {
+      return state.signedIn;
     }
   },
   mutations: {
@@ -28,6 +32,9 @@ const store = new Vuex.Store({
     },
     SET_SERVERCONNECTION(state, newServerConnection) {
       state.serverConnection = newServerConnection;
+    },
+    SET_SIGNEDIN(state, newSignedIn) {
+      state.signedIn = newSignedIn;
     }
   },
   actions: {
@@ -43,7 +50,8 @@ const store = new Vuex.Store({
 });
 
 console.log('Starting Connection to WebSocket Server');
-const websocket = new WebSocket('ws://localhost:9000/websocket');
+const server = "malefiz-at-htwg.herokuapp.com"
+const websocket = new WebSocket("wss://" + server + "/websocket");
 store.commit('SET_WEBSOCKET', websocket);
 websocket.onopen = (event) => {
   console.log(event);

@@ -8,6 +8,7 @@ export const WebSocketMixin = {
     ...mapMutations(['SET_CONTROLLER']),
     ...mapMutations(['SET_WEBSOCKET']),
     ...mapMutations(['SET_SERVERCONNECTION']),
+    ...mapMutations(['SET_SIGNEDIN']),
 
     ...mapActions(['SET_CONTROLLER_ASYNC']),
     ...mapActions(['SET_WEBSOCKET_ASYNC']),
@@ -16,5 +17,6 @@ export const WebSocketMixin = {
     ...mapGetters(['GET_CONTROLLER']),
     ...mapGetters(['GET_WEBSOCKET']),
     ...mapGetters(['GET_SERVERCONNECTION']),
+    ...mapGetters(['GET_SIGNEDIN']),
   },
 };

@@ -1,11 +1,12 @@
 import Vuex from 'vuex';
+import createPersistedState from "vuex-persistedstate";
 
 const store = new Vuex.Store({
   state: {
     controller: {},
     websocket: Object,
     serverConnection: Boolean,
-    signedIn: false,
+    signedIn: Boolean,
   },
   getters: {
     GET_CONTROLLER(state) {
@@ -46,6 +47,7 @@ const store = new Vuex.Store({
     },
   },
   modules: {},
+  plugins: [createPersistedState()]
 
 });
 
@@ -61,6 +63,7 @@ websocket.onopen = (event) => {
   websocket.send('connect');
   store.commit('SET_CONTROLLER', event);
 };
+
 
 websocket.onclose = () => {
   console.log('Connection with Websocket Closed!');

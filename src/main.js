@@ -23,6 +23,16 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+firebase.auth().onAuthStateChanged(user =>  {
+    if (user) {
+        console.log("hat user")
+        store.commit('SET_SIGNEDIN', true);
+    } else {
+        console.log("kein user")
+        store.commit('SET_SIGNEDIN', false);
+    }
+});
+
 createApp(App)
     .use(Quasar, quasarUserOptions)
     .use(store)

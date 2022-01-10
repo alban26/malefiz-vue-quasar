@@ -22,6 +22,7 @@ export default {
   data() {
     return {
       controller: {},
+      content: '',
     };
   },
   mixins: [WebSocketMixin],
@@ -46,7 +47,6 @@ export default {
       this.rollDiceWithoutValues();
       this.sendMessage({ data: '200' });
     },
-
   },
   computed: {
     updateStatement() {

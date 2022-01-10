@@ -1,7 +1,7 @@
 <template>
   <div class="col-xs-12 col-sm-6 col-md-4">
     <q-card dark>
-      <div id="form">
+      <div v-if="gameStarted < 1" id="form">
         <h4>Bitte Spielername eintragen!</h4>
         <div class="input">
           <div class="inputBox">
@@ -28,7 +28,7 @@
 
             </q-item>
 
-            <q-separator inset="item" />
+            <q-separator inset="item"/>
 
             <q-item v-if="currentPlayers[1]" clickable v-ripple>
               <q-item-section avatar>
@@ -68,12 +68,27 @@
             </q-item>
           </q-list>
           <div class="inputBox">
-          <router-link v-if="currentPlayers.length > 1" style="text-decoration: none; color: #E55A00" :to="{ name:'Gameboard' }">
-            <input class="input text-center my-4" type="button" @click="startGame()" value="Spiel starten!">
-          </router-link>
+            <router-link v-if="currentPlayers.length > 1" style="text-decoration: none; color: #E55A00"
+                         :to="{ name:'Gameboard' }">
+              <input class="input text-center my-4" type="button" @click="startGame()" value="Spiel starten!">
+            </router-link>
+
           </div>
         </div>
       </div>
+      <div v-else class="form2">
+        <h4>Folgende Spieler spielen bereits!</h4>
+        <br />
+        <h6 v-for="(n, i) in currentPlayers.length" :key="n">{{ currentPlayers[i] }}</h6>
+        <div class="input">
+          <div class="inputBox">
+            <router-link style="text-decoration: none; color: #E55A00" :to="{ name:'Gameboard' }">
+              <input class="input text-center my-4" type="button" value="Hier gehts zum Spiel!">
+            </router-link>
+          </div>
+        </div>
+      </div>
+
     </q-card>
   </div>
 </template>
@@ -108,6 +123,9 @@ export default {
     currentPlayers() {
       return this.GET_CONTROLLER.currentPlayers
     },
+    gameStarted() {
+      return this.GET_CONTROLLER.players.length
+    }
   }
 };
 </script>
@@ -117,7 +135,16 @@ export default {
   padding: 7rem 2vw;
 }
 
+.form2 {
+  padding: 7rem 2vw;
+}
+
 h4 {
+  color: #c7c7c7;
+  align-content: center;
+}
+
+h6 {
   color: #c7c7c7;
   align-content: center;
 }

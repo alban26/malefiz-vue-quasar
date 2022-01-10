@@ -10,7 +10,7 @@ import firebase from "firebase/compat";
 
 
 let gauthClientId = "886182434882-7i8mtc8cekkdogr23ee5c15vp51tdf76.apps.googleusercontent.com";
-const gAuthOptions = { clientId: gauthClientId, scope: 'email', prompt: 'select_account', fetch_basic_profile: true }
+const gAuthOptions = {clientId: gauthClientId, scope: 'email', prompt: 'select_account', fetch_basic_profile: true}
 
 const firebaseConfig = {
     apiKey: "AIzaSyBCXb1_n8FRUoiM2vlvI2mm4L0cuwU56Ug",
@@ -23,7 +23,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-firebase.auth().onAuthStateChanged(user =>  {
+firebase.auth().onAuthStateChanged(user => {
     if (user) {
         console.log("hat user")
         store.commit('SET_SIGNEDIN', true);

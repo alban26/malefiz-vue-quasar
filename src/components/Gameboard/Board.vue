@@ -292,7 +292,7 @@ export default {
         if (playerNumber !== 0 && !hasWall) {
           if (possibleCell) {
             return {
-              gameinput: `"${cellNumber}"`,
+              gameinput: `${cellNumber}`,
               class: `figure-${playerNumber}-circle`,
             };
           }
@@ -402,6 +402,28 @@ h1 {
   font-size: 3vw;
   font-family: "Comic Sans MS", serif;
   color: #E55A00;
+}
+
+.figure-1-circle {
+  background-color: red;
+  border: solid #00dde5;
+  max-width: 80%;
+  max-height: 80%;
+  min-width: 80%;
+  min-height: 80%;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.figure-2-circle {
+  background-color: forestgreen;
+  border: solid #00dde5;
+  max-width: 80%;
+  max-height: 80%;
+  min-width: 80%;
+  min-height: 80%;
+  border-radius: 50%;
+  text-align: center;
 }
 
 .figure-1 {

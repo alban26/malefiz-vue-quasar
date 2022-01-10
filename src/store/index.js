@@ -52,9 +52,9 @@ const store = new Vuex.Store({
 });
 
 console.log('Starting Connection to WebSocket Server');
-const server ="localhost:9000"
-//const server = "malefiz-at-htwg.herokuapp.com"
-const websocket = new WebSocket("ws://" + server + "/websocket");
+//const server ="localhost:9000"
+const server = "malefiz-at-htwg.herokuapp.com"
+const websocket = new WebSocket("wss://" + server + "/websocket");
 store.commit('SET_WEBSOCKET', websocket);
 websocket.onopen = (event) => {
   console.log(event);
